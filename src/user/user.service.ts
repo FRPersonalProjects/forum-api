@@ -1,42 +1,67 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Prisma, User } from '@prisma/client';
 import { PrismaService } from 'src/database/prisma.service';
+import * as bcrypt from 'bcrypt';
 
-// regras de negocio relacionadas ao usuario
+// responsavel pelas regras de negocio relacionadas ao user, ex: CRUD de user, validacoes
+
+/*
+  create()
+  findAll()
+  findOne(id)
+  update(id, dto)
+  remove(id)
+  */
 
 @Injectable()
 export class UserService {
   @Inject() // injetando o prisma service
   private readonly prisma: PrismaService; // criando uma propriedade prisma do tipo PrismaService
 
-  async user( // metodo para buscar usuario unico
-    userWhereUniqueInput: Prisma.UserWhereUniqueInput,
-  ): Promise<User | null> {
+  // metodo para buscar usuario por id
+  async findOne(userWhereUniqueInput: Prisma.UserWhereUniqueInput
+  ): Promise<User | null> { // retorna o usuario encontrado ou null
     return this.prisma.user.findUnique({
-      where: userWhereUniqueInput,
+      where: userWhereUniqueInput // id do usuario
     });
   }
 
-  async createUser(data: Prisma.UserCreateInput): Promise<User> { // metodo para criar usuario
-    return this.prisma.user.create({
-      data,
+  // metodo para criar usuario
+  async create(data: Prisma.UserCreateInput
+  ): Promise<User> { // retorna o usuario criado
+    const saltOrRounds = 10;
+    const password = data.password;
+    data.password = await bcrypt.hash(password, saltOrRounds);
+    return this.prisma.user.create({ 
+      data // dados do usuario para criar
     });
-  } // todo: adicionar criptografia de senha
+  }
 
-  async updateUser(params: { // metodo para atualizar usuario  
+  // metodo para atualizar usuario
+  async update(params: { // metodo para atualizar usuario  
     where: Prisma.UserWhereUniqueInput; // id
     data: Prisma.UserUpdateInput; // dados para atualizar o usuario
   }): Promise<User> { // retorna o usuario atualizado
-    const { where, data } = params; // desestruturando os parametros
+  /*       ou
+  async updateUser(where: Prisma.UserWhereUniqueInput, data: Prisma.UserUpdateInput
+  ): Promise<User> {                     */
+    if (params.data.password) { // se senha for alterada, criptografar novamente
+      const saltOrRounds = 10;
+      const password = params.data.password;
+      params.data.password = await bcrypt.hash(password, saltOrRounds);
+    }
+    const { where, data } = params; // mandando conteudo do params para where e data
     return this.prisma.user.update({ // atualizando o usuario 
       data, // dados para atualizar
-      where, // id
+      where // id
     });
   }
 
-  async deleteUser(where: Prisma.UserWhereUniqueInput): Promise<User> { // metodo para deletar usuario
+  // metodo para deletar usuario
+  async delete(where: Prisma.UserWhereUniqueInput
+  ): Promise<User> { // retorna o usuario deletado
     return this.prisma.user.delete({
-      where, // id
+      where // id
     });
   }
 

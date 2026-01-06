@@ -1,4 +1,4 @@
-import { Body, Controller, Inject, Post } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Inject, Post } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { AuthService } from './auth.service';
 
@@ -17,7 +17,9 @@ export class AuthController {
 
     // metodo para login
     @Post('signin') // rota para login - auth/signin
+    @HttpCode(HttpStatus.OK) // definindo codigo de status 200 para o login
     async signIn(@Body() body: Prisma.UserCreateInput) { // rota para login - auth/signin // qual o tipo do body? // Prisma.UserCreateInput
+
         return this.authService.signIn(body);
         // maria ss22
     }

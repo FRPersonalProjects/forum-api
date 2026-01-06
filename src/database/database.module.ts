@@ -5,4 +5,5 @@ import { PrismaService } from './prisma.service';
   providers: [PrismaService],
   exports: [PrismaService] // exportar para uso em outros módulos
 })
+
 export class DatabaseModule {}

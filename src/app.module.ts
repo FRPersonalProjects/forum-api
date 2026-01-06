@@ -6,6 +6,8 @@ import { DatabaseModule } from './database/database.module';
 // modulo principal que importara outros modulos
 
 @Module({
-  imports: [AuthModule, UserModule, DatabaseModule],
+  imports: [AuthModule, 
+    UserModule, 
+    DatabaseModule],
 })
 export class AppModule {}

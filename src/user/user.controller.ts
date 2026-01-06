@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Inject, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Inject, Put, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Prisma, User as UserModel } from '@prisma/client';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('user')
 export class UserController {
@@ -24,6 +25,7 @@ export class UserController {
     return this.userService.create(userData); // chamando o metodo create do UserService
   }
 
+  @UseGuards(AuthGuard)
   @Get(':id') // rota para buscar usuario por id - user/:id
   async findOne( // metodo para buscar usuario por id
     @Param('id') id: string // id do usuario nos parametros da requisicao
@@ -31,6 +33,7 @@ export class UserController {
     return this.userService.findOne({ id: Number(id) }); // chamando o metodo findOne do UserService
   }
 
+  @UseGuards(AuthGuard)
   @Put(':id') // rota para atualizar usuario por id - user/:id
   async update( // metodo para atualizar usuario
     @Body() userData: Prisma.UserUpdateInput, // dados do usuario no corpo da requisicao
@@ -39,6 +42,7 @@ export class UserController {
     return this.userService.update({where: { id: Number(id) }, data: userData}); // chamando o metodo update do UserService
   }
 
+  @UseGuards(AuthGuard)
   @Delete(':id') // rota para deletar usuario por id - user/:id
   async delete( // metodo para deletar usuario por id
     @Param('id') id: string // id do usuario nos parametros da requisicao

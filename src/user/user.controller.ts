@@ -34,7 +34,7 @@ export class UserController {
   }
 
   @UseGuards(AuthGuard)
-  @Put(':id') // rota para atualizar usuario por id - user/:id
+  @Patch(':id') // rota para atualizar usuario por id - user/:id
   async update( // metodo para atualizar usuario
     @Body() userData: Prisma.UserUpdateInput, // dados do usuario no corpo da requisicao
     @Param('id') id: string // id do usuario nos parametros da requisicao

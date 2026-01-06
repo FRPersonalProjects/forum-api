@@ -40,35 +40,51 @@ Below are the main API routes. Click to expand and view their endpoints and desc
 <details>
   <summary><strong>User</strong></summary>
 
-| route                         | description                                                   |
-| ----------------------------- | ------------------------------------------------------------- |
-| <kbd>GET /authenticate</kbd>  | Retrieves user info. See [response details](#get-auth-detail) |
-| <kbd>POST /authenticate</kbd> | Authenticates user. See [request details](#post-auth-detail)  |
-| <kbd>GET /user</kbd>          | Lists all users                                               |
+| route                       | description                       |
+| --------------------------- | --------------------------------- |
+| <kbd>POST /user</kbd>       | Create a new user                 |
+| <kbd>GET /user/:id</kbd>    | Get user by ID (auth required)    |
+| <kbd>PATCH /user/:id</kbd>  | Update user by ID (auth required) |
+| <kbd>DELETE /user/:id</kbd> | Delete user by ID (auth required) |
+
+</details>
+
+<details>
+  <summary><strong>Auth</strong></summary>
+
+| route                        | description |
+| ---------------------------- | ----------- |
+| <kbd>POST /auth/signin</kbd> | User login  |
 
 </details>
 
 <details>
   <summary><strong>Questions</strong></summary>
 
-| route                      | description            |
-| -------------------------- | ---------------------- |
-| <kbd>GET /questions</kbd>  | Lists all questions    |
-| <kbd>POST /questions</kbd> | Creates a new question |
+| route                            | description                           |
+| -------------------------------- | ------------------------------------- |
+| <kbd>POST /questions</kbd>       | Create a new question (auth required) |
+| <kbd>GET /questions</kbd>        | List all questions (auth required)    |
+| <kbd>GET /questions/:id</kbd>    | Get question by ID (auth required)    |
+| <kbd>PATCH /questions/:id</kbd>  | Update question by ID (auth required) |
+| <kbd>DELETE /questions/:id</kbd> | Delete question by ID (auth required) |
 
 </details>
 
 <details>
   <summary><strong>Answers</strong></summary>
 
-| route                    | description          |
-| ------------------------ | -------------------- |
-| <kbd>GET /answers</kbd>  | Lists all answers    |
-| <kbd>POST /answers</kbd> | Creates a new answer |
+| route                                | description                                  |
+| ------------------------------------ | -------------------------------------------- |
+| <kbd>POST /answers/:questionId</kbd> | Create answer for a question (auth required) |
+| <kbd>GET /answers</kbd>              | List all answers (auth required)             |
+| <kbd>GET /answers/:id</kbd>          | Get answer by ID (auth required)             |
+| <kbd>PATCH /answers/:id</kbd>        | Update answer by ID (auth required)          |
+| <kbd>DELETE /answers/:id</kbd>       | Delete answer by ID (auth required)          |
 
 </details>
 
-<h3 id="get-auth-detail">GET /authenticate</h3>
+<!---<h3 id="get-auth-detail">GET /authenticate</h3>
 
 **RESPONSE**
 
@@ -94,7 +110,7 @@ Below are the main API routes. Click to expand and view their endpoints and desc
 {
   ...
 }
-```
+```-->
 
 ## Helpful Documentation
 

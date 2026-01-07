@@ -3,22 +3,29 @@ import { Prisma, User } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from 'src/user/user.service';
+import { PrismaService } from 'src/database/prisma.service';
 
 @Injectable()
 export class AuthService {
 
+    /* @Inject()
+    private readonly userService: UserService; */
+
     @Inject()
-    private readonly userService: UserService;
+    private readonly userService: UserService; // injetando o servico de usuario
 
     @Inject()
     private readonly jwtService: JwtService; // injetando o servico de jwt
+
+    @Inject()
+    private readonly prisma: PrismaService;
 
     // servico responsavel pela autenticacao dos usuarios
 
     // metodo para login
     async signIn(params: Prisma.UserCreateInput // parametros: email e password
     ): Promise<{ access_token: string }> { // retorna o token de acesso
-    const user = await this.userService.findOne({ email: params.email }); // buscando usuario pelo email
+    const user = await this.prisma.user.findUnique({ where: { email: params.email } }); // buscando usuario pelo email
     if (!user) // se usuario nao encontrado
       throw new NotFoundException('User not found'); 
 

@@ -29,7 +29,7 @@ export class UserController {
   @Get(':id') // rota para buscar usuario por id - user/:id
   async findOne( // metodo para buscar usuario por id
     @Param('id') id: string // id do usuario nos parametros da requisicao
-  ): Promise<UserModel | null> { // retorna o usuario encontrado ou null
+  ): Promise<Omit<UserModel, 'password'> | null> { // retorna o usuario encontrado ou null
     return this.userService.findOne({ id: Number(id) }); // chamando o metodo findOne do UserService
   }
 

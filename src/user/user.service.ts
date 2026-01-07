@@ -20,9 +20,17 @@ export class UserService {
 
   // metodo para buscar usuario por id
   async findOne(userWhereUniqueInput: Prisma.UserWhereUniqueInput
-  ): Promise<User | null> { // retorna o usuario encontrado ou null
+  ): Promise<Omit<User, 'password'> | null> { // retorna o usuario encontrado ou null
     return this.prisma.user.findUnique({
-      where: userWhereUniqueInput // id do usuario
+      where: userWhereUniqueInput, // id do usuario
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        password: false,
+        createdAt: true,
+        updatedAt: true,
+      }
     });
   }
 

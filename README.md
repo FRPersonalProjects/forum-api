@@ -6,7 +6,7 @@
 
 # Forum API
 
-A forum API. It provides user authentication, question and answer management, and user administration.
+The goal of this project is to practice and deepen backend development concepts such as authentication, CRUD operations, data validation, and entity relationships through an API for user management and forum resources (questions and answers).
 
 ## Tech Stack
 
@@ -14,7 +14,7 @@ A forum API. It provides user authentication, question and answer management, an
 
 ## Getting Started
 
-1. **Install dependencies**: `npm install` or `yarn`
+1. **Install dependencies**: `npm install`
 <!---2. **Start containers**: `docker-compose up -d`-->
 2. **Environment variables**: Copy `.env.example` to `.env.local` and configure as needed
 3. **Database setup**: `npx prisma migrate dev --name init`

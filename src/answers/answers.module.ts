@@ -2,9 +2,10 @@ import { Module } from '@nestjs/common';
 import { AnswersService } from './answers.service';
 import { AnswersController } from './answers.controller';
 import { AuthModule } from 'src/auth/auth.module';
+import { DatabaseModule } from 'src/database/database.module';
 
 @Module({
-  imports: [AuthModule],
+  imports: [AuthModule, DatabaseModule],
   controllers: [AnswersController],
   providers: [AnswersService],
 })

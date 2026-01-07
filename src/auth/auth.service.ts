@@ -26,7 +26,7 @@ export class AuthService {
     if (!passwordMatch) // se senha nao bate
       throw new UnauthorizedException('Invalid credentials');
 
-    const payload = { sub: user.id }; // criando payload para o jwt
+    const payload = { user: user.id }; // criando payload para o jwt
 
     return { access_token: await this.jwtService.signAsync(payload) };
   }

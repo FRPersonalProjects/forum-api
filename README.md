@@ -1,12 +1,12 @@
-<!--- # "Can be an image or gif from the project" -->
+<!--- # "Can be an image or gif from the project"
 
 <p align="center">
   <img src="../.github/example.png" alt="Forum API">
-</p>
+</p>-->
 
 # Forum API
 
-A forum API built with NestJS, Prisma, and PostgreSQL. It provides user authentication, question and answer management, and user administration.
+A forum API. It provides user authentication, question and answer management, and user administration.
 
 ## Tech Stack
 
@@ -15,27 +15,27 @@ A forum API built with NestJS, Prisma, and PostgreSQL. It provides user authenti
 ## Getting Started
 
 1. **Install dependencies**: `npm install` or `yarn`
-2. **Start containers**: `docker-compose up -d`
-3. **Environment variables**: Copy `.env.example` to `.env.local` and configure as needed
-4. **Database setup**: `npx prisma migrate dev --name init`
-5. **Start development**: `npm run start:dev`
+<!---2. **Start containers**: `docker-compose up -d`-->
+2. **Environment variables**: Copy `.env.example` to `.env.local` and configure as needed
+3. **Database setup**: `npx prisma migrate dev --name init`
+4. **Start development**: `npm run start:dev`
 
 ## Contribute
 
-1. **Clone the project**: `git clone <repository-url>`
+1. **Clone the project**: `git clone <https://github.com/FRPersonalProjects/forum-api.git>`
 2. **Create a feature branch**: `git checkout -b feature/NAME`
-3. Follow commit patterns
-4. Open a Pull Request explaining the problem solved or feature added. If there are visual changes, add a screenshot and wait for review!
+3. **Follow commit patterns**
+4. **Open a Pull Request explaining the problem solved or feature added. If there are visual changes, add a screenshot and wait for review!**
 
-## License
+<!---## License
 
 This software is available under the following license:
 
-- [MIT](https://rem.mit-license.org)
+- [MIT](https://rem.mit-license.org)-->
 
 ## API Endpoints
 
-Below are the main API routes. Click to expand and view their endpoints and descriptions:
+Below are the API routes. Click to expand and view their endpoints and descriptions:
 
 <details>
   <summary><strong>User</strong></summary>

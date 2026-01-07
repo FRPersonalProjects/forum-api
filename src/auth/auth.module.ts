@@ -6,7 +6,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { UserModule } from 'src/user/user.module';
 import { AuthGuard } from './auth.guard';
 
-console.log(process.env.SECRET_KEY);
+// console.log(process.env.SECRET_KEY);
 
 @Module({
   imports: [forwardRef(() => UserModule), JwtModule.register({ // importar modulos para o servico de autenticacao
